@@ -1,0 +1,127 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=stucco ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 25600,
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "iso_checksum": "ababb88a492e08759fddcf4f05e5ccc58ec9d47fa37550d63931d0a5fa4f7388",
+      "iso_checksum_type": "sha256",
+      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "8192"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+      ]
+    },
+    {
+      "type": "vmware-iso",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=stucco ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 25600,
+      "guest_os_type": "Ubuntu-64",
+      "http_directory": "http",
+      "iso_checksum": "ababb88a492e08759fddcf4f05e5ccc58ec9d47fa37550d63931d0a5fa4f7388",
+      "iso_checksum_type": "sha256",
+      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'",
+      "tools_upload_flavor": "linux",
+      "vmx_data": {
+        "memsize": "8192",
+        "numvcpus": "2",
+        "cpuid.coresPerSocket": "1"
+      }
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/base.sh"
+    },    
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/sudo.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/ssh.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/vm_tools.sh"
+    },    
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/ansible.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_dir": "provisioning",
+      "playbook_file": "provisioning/site.yml",
+      "inventory_file": "provisioning/inventory-packer",
+      "extra_arguments": "--limit=all",
+      "role_paths": [
+        "provisioning/roles/Mayeu.RabbitMQ",
+        "provisioning/roles/Stouts.nodejs",
+        "provisioning/roles/jgoodall.common",
+        "provisioning/roles/jgoodall.golang",
+        "provisioning/roles/jgoodall.maven3",
+        "provisioning/roles/jgoodall.titan",
+        "provisioning/roles/retr0h.etcd",
+        "provisioning/roles/smola.java",
+        "provisioning/roles/stucco.collectors",
+        "provisioning/roles/stucco.common",
+        "provisioning/roles/stucco.doc",
+        "provisioning/roles/stucco.rt",
+        "provisioning/roles/stucco.ui"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/cleanup.sh"
+    }
+  ],
+
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "stucco-{{.Provider}}.box"
+    }
+  ]
+
+}
