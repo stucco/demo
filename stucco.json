@@ -93,7 +93,7 @@
       "playbook_dir": "provisioning",
       "playbook_file": "provisioning/site.yml",
       "inventory_file": "provisioning/inventory-packer",
-      "extra_arguments": "--limit=all",
+      "extra_arguments": ["--limit=all", "-vvv"],
       "role_paths": [
         "provisioning/roles/Mayeu.RabbitMQ",
         "provisioning/roles/Stouts.nodejs",
@@ -101,7 +101,6 @@
         "provisioning/roles/jgoodall.golang",
         "provisioning/roles/jgoodall.maven3",
         "provisioning/roles/jgoodall.titan",
-        "provisioning/roles/retr0h.etcd",
         "provisioning/roles/smola.java",
         "provisioning/roles/stucco.collectors",
         "provisioning/roles/stucco.common",
