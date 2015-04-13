@@ -2,6 +2,8 @@
 
 apt-get -y install linux-headers-$(uname -r)
 
+apt-get -y install cloud-init
+
 case "$PACKER_BUILDER_TYPE" in
 
 vmware-iso|vmware-vmx)
