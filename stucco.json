@@ -113,6 +113,11 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
       "script": "scripts/cleanup.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
+      "script": "scripts/wait_for_empty_queue.sh"
     }
   ],
 
