@@ -1,5 +1,5 @@
 
-# Scripts for creating Virutal Machines
+# Scripts for creating Virtual Machines
 
 This project will set up the demonstration environment for Stucco using [Packer](http://www.packer.io/) to create [VitualBox](https://www.virtualbox.org/) and [VMware Fusion](http://www.vmware.com/products/fusion/features.html)/[VMware Workstation](http://www.vmware.com/products/workstation/features.html) virtual machines for use with [Vagrant](http://www.vagrantup.com/). 
 
