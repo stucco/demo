@@ -1,4 +1,8 @@
 {
+  "push": {
+    "name": "jgoodall/stucco-demo",
+    "vcs": true
+  },
   "builders": [
     {
       "type": "virtualbox-iso",
@@ -67,7 +71,7 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
       "script": "scripts/base.sh"
-    },    
+    },
     {
       "type": "shell",
       "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
@@ -82,7 +86,7 @@
       "type": "shell",
       "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
       "script": "scripts/vm_tools.sh"
-    },    
+    },
     {
       "type": "shell",
       "execute_command": "echo 'vagrant'| sudo -S sh '{{.Path}}'",
