@@ -2,9 +2,11 @@ stucco_collector_dir: "{{ stucco_dir }}/collectors"
 
 stucco_collector_config: "{{ stucco_collector_dir }}/config/collectors.yml"
 
-# There are two environments:
-#  demo: does not load all of the big files.
-#  production: load everything
+# There are several environments:
+#  debugging: This contains minimal data, for faster provisioning
+#  dev: This contains testbed data, recent NVD data, and other external sources
+#  demo: This contains testbed data, all NVD data, and other external sources
+#  production: This contains all NVD data, all external sources, but excludes testbed data.
 stucco_collector_env: production
 
 # There are two modes:
