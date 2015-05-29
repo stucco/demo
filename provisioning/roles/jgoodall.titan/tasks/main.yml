@@ -15,6 +15,9 @@
 - name: Remove the zip file
   file: path={{ titan_download_dir }}/titan.zip state=absent
 
+- name: Copy the titan script
+  copy: src=titan.sh dest={{ titan_path }}/bin mode=0755
+
 - name: Copy the rexster script
   copy: src=rexster.sh dest={{ titan_path }}/bin mode=0755
 
