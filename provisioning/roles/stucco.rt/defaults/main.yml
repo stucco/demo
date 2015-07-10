@@ -1,1 +1,13 @@
 stucco_rt_dir: "{{ stucco_dir }}/rt"
+
+# RabbitMQ settings
+rabbitmq_host: localhost
+rabbitmq_port: 5672
+rabbitmq_exchange: stucco
+rabbitmq_queue: stucco
+rabbitmq_user: stucco
+rabbitmq_password: stucco
+
+# Document service settings
+stucco_doc_host: localhost
+stucco_doc_port: 8118
