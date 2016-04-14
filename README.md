@@ -13,3 +13,7 @@ This project will set up the demonstration environment for Stucco using [Packer]
 6. Run `packer build stucco.json` to build the VMs and Vagrant box.
 7. Add the vagrant box for virtualbox (or vmware): `vagrant box add ./stucco-virtualbox.box --name=stucco/stucco-ubuntu1404`.
 8. Run `vagrant up` to start the VM.
+
+## Notes
+
+* If you notice an `ISO download failed` or similar error, it is possible that the base OS image is no longer available.  Check the `iso_url` field(s) in the `stucco.json` config file, and if needed update it and its matching `iso_checksum` field(s).  If you do notice this, please point it out to us.
