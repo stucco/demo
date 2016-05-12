@@ -103,13 +103,13 @@
       "role_paths": [
         "provisioning/roles/Mayeu.RabbitMQ",
         "provisioning/roles/nodesource.node",
+        "provisioning/roles/migibert.orientdb",
         "provisioning/roles/jgoodall.common",
         "provisioning/roles/jgoodall.golang",
         "provisioning/roles/jgoodall.maven3",
-        "provisioning/roles/jgoodall.titan",
         "provisioning/roles/smola.java",
-        "provisioning/roles/stucco.collectors",
         "provisioning/roles/stucco.common",
+        "provisioning/roles/stucco.collectors",
         "provisioning/roles/stucco.doc",
         "provisioning/roles/stucco.rt",
         "provisioning/roles/stucco.ui"

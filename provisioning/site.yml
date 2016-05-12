@@ -3,7 +3,6 @@
   sudo: yes
   sudo_user: root
   vars:
-    titan_version: 0.5.4
 
     rabbitmq_ssl: false
     rabbitmq_host: localhost
@@ -15,13 +14,7 @@
     rabbitmq_conf_tcp_listeners_port: "{{ rabbitmq_port }}"
     rabbitmq_users_definitions: [{vhost: /, user: "{{ rabbitmq_user }}", password: "{{ rabbitmq_password }}" }]
 
-    rexster_host: localhost
-    rexster_http_port: 8182
-    rexster_rexpro_port: 8184
-
     stucco_dir: /stucco
-
-    stucco_collector_mode: once
 
     stucco_doc_host: localhost
     stucco_doc_port: 8118
@@ -31,11 +24,18 @@
 
     stucco_collector_env: demo
 
+    orientdb_version: 2.1.2
+
   roles:
   - { role: stucco.common }
   - { role: Mayeu.RabbitMQ }
   - { role: stucco.graph }
-  - { role: stucco.rt }
   - { role: stucco.doc }
+  - { role: stucco.rt }
   - { role: stucco.ui }
   - { role: stucco.collectors }
+
+  environment:
+    STUCCO_DB_TYPE: "ORIENTDB"
+    STUCCO_DB_CONFIG: "/stucco/graph-init/config/orientdb.yml"
+    STUCCO_DB_INDEX_CONFIG: "/stucco/graph-init/config/stucco_orientdb_indexing.json"
