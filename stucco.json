@@ -101,9 +101,9 @@
       "inventory_file": "provisioning/inventory-packer",
       "extra_arguments": ["--limit=all", "-vvv"],
       "role_paths": [
-        "provisioning/roles/Mayeu.RabbitMQ",
+        "provisioning/roles/mikeiannacone.rabbitmq",
         "provisioning/roles/nodesource.node",
-        "provisioning/roles/migibert.orientdb",
+        "provisioning/roles/ANSX.postgresql",
         "provisioning/roles/jgoodall.common",
         "provisioning/roles/jgoodall.golang",
         "provisioning/roles/jgoodall.maven3",
