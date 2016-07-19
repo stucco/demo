@@ -19,7 +19,7 @@ default:
 #
 ###############################################################################
   demo:
-    collectors:
+#    collectors:
 #
 #     Endogenous Content
 #
