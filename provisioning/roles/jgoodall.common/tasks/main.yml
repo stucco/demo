@@ -2,11 +2,12 @@
 - name: install common packages (build-essential, git, mercurial, supervisor, unzip, rsync, curl, wget)
   apt: name={{ item }} update_cache=yes state=present
   with_items:
+    - acl
     - build-essential
+    - curl
     - git
     - mercurial
+    - rsync
     - supervisor
     - unzip
-    - rsync
-    - curl
     - wget
