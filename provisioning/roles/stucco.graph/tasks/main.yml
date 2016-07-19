@@ -9,5 +9,16 @@
 - name: reload supervisord
   shell: /usr/bin/supervisorctl reload
 
+- name: Restart PostgreSQL
+  become: yes
+  shell: service postgresql restart 
+
 - name: wait for postgresql
   wait_for: port=5432 delay=10  
+
+- name: add stucco user to postgres and set roles
+  shell:  echo "CREATE USER stucco WITH PASSWORD 'stucco' CREATEDB CREATEROLE SUPERUSER REPLICATION;" | psql -U postgres
+
+#TODO: specify db name as var
+- name: create stucco database
+  shell:  echo "CREATE DATABASE testdb WITH OWNER stucco;" | psql -U postgres
