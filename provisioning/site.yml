@@ -1,7 +1,10 @@
 ---
 - hosts: all
-  sudo: yes
-  sudo_user: root
+  #sudo: yes
+  #sudo_user: root
+  become: yes
+  become_user: root
+  become_method: sudo
   vars:
 
     rabbitmq_ssl: false
