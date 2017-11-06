@@ -101,18 +101,19 @@
       "inventory_file": "provisioning/inventory-packer",
       "extra_arguments": ["--limit=all", "-vvv"],
       "role_paths": [
-        "provisioning/roles/Mayeu.RabbitMQ",
-        "provisioning/roles/nodesource.node",
+        "provisioning/roles/ansible-role.nodejs",
         "provisioning/roles/jgoodall.common",
         "provisioning/roles/jgoodall.golang",
         "provisioning/roles/jgoodall.maven3",
-        "provisioning/roles/jgoodall.titan",
+        "provisioning/roles/mikeiannacone.rabbitmq",
         "provisioning/roles/smola.java",
         "provisioning/roles/stucco.collectors",
         "provisioning/roles/stucco.common",
         "provisioning/roles/stucco.doc",
+        "provisioning/roles/stucco.graph",
         "provisioning/roles/stucco.rt",
-        "provisioning/roles/stucco.ui"
+        "provisioning/roles/stucco.ui",
+        "provisioning/roles/zenoamaro.postgresql"
       ]
     },
     {
