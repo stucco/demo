@@ -8,6 +8,10 @@
     stucco_user: stucco
     stucco_group: stucco
 
+    nodejs_nvm_user: vagrant
+    ansible_ssh_user: vagrant
+    host_ip: localhost
+
     # RabbitMQ settings
     rabbitmq_ssl: false
     rabbitmq_host: localhost
