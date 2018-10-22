@@ -14,20 +14,20 @@
   when: maven_file.stat.exists == False
 
 - name: Download Maven checksum
-  get_url: url={{ maven_url }}.md5 dest=/tmp/maven.md5
+  get_url: url={{ maven_url }}.sha1 dest=/tmp/maven.sha1
   register: get_url_result
   until: get_url_result | succeeded
   retries: 3
   delay: 10
 
 # There are some network errors which `wget` handles and `get_url` module does not, so added this check/fallback.
-- stat: path=/tmp/maven.md5
-  register: maven_file_md5
+- stat: path=/tmp/maven.sha1
+  register: maven_file_sha1
 
-- shell: wget {{ maven_url }}.md5 -O /tmp/maven.md5
-  when: maven_file_md5.stat.exists == False
+- shell: wget {{ maven_url }}.sha1 -O /tmp/maven.sha1
+  when: maven_file_sha1.stat.exists == False
 
-- command: echo " "/tmp/maven.zip >> /tmp/maven.md5 && md5sum -c /tmp/maven.md5
+- command: echo " "/tmp/maven.zip >> /tmp/maven.sha1 && sha1sum -c /tmp/maven.sha1
 
 - file: path={{ maven_prefix }} state=directory
 
@@ -37,7 +37,7 @@
     dest={{ maven_prefix }}
 
 - file: path=/tmp/maven.zip state=absent
-- file: path=/tmp/maven.md5 state=absent
+- file: path=/tmp/maven.sha1 state=absent
 
 - template: src=etc/profile.d/maven.sh dest=/etc/profile.d/maven.sh owner=root group=root mode=0644
 
